@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object>
+    <table>
+        <cmd_condition fromsize="200" pk="cond_id" name="form">
+            <field name="cond_id" dbtype="int" xtype="hidden"/>
+            <field name="cond_name" dbtype="string" xtype="textfield" label="ชื่อเงื่อนไข"/>
+            <field name="cond_detail" dbtype="string" xtype="textarea" label="คำอธิบาย"/>
+            <field name="cond_status" dbtype="int" xtype="checkbox" label="สถานะ"/>
+            <field name="cond_update" dbtype="datetime" xtype="hidden" label=""/>
+        </cmd_condition>
+
+        <cmd_variable fromsize="200" pk="var_id" name="form">
+            <field name="var_id" dbtype="int" xtype="hidden" />
+            <field name="var_name" dbtype="string" xtype="textfield" label="ชื่อตัวแปร"/>
+            <field name="var_detail" dbtype="string" xtype="textarea" label="คำอธิบาย"/>
+            <field name="var_eval" dbtype="string" xtype="hidden"/>
+            <field name="var_type" dbtype="int" xtype="hidden"/>
+            <field name="var_status" dbtype="int" xtype="checkbox" label="สถานะ"/>
+            <field name="var_update" dbtype="datetime" xtype="hidden"/>
+        </cmd_variable>
+
+        <cmd_variable_group pk="group_id" name="form">
+            <field name="group_id" dbtype="int" xtype="hidden"/>
+            <field name="group_name" dbtype="string" xtype="textfield"/>
+        </cmd_variable_group>
+    </table>
+</object>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object>
+    <config charset="utf8">
+        <host>127.0.0.1</host>
+        <dbuser>root</dbuser>
+        <dbpass>root</dbpass>
+        <dbs>command_verification</dbs>
+    </config>
+</object>
