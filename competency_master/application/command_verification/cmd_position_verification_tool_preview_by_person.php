@@ -10,6 +10,7 @@
 */
 //@modify Supachai 03/07/2014 �����١���ҧ����������Ѻ��õ�Ǩ�س���ѵ���ºؤ��
 
+
 session_start();
 $session_siteid = ($_SESSION['secid'] != '') ? $_SESSION['secid'] : $_SESSION['siteid'];
 if(trim($_GET['service']) == ''){ # ��Ǩ������¡�ҡ��������˹
