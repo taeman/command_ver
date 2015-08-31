@@ -1,6 +1,6 @@
 <?php
 /**
-* @comment ไฟล์ถูกสร้างขึ้นมาสำหรับการตรวจคุณสมบัติรายบุคคล
+* @comment ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูก๏ฟฝ๏ฟฝ๏ฟฝาง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝับ๏ฟฝ๏ฟฝรต๏ฟฝวจ๏ฟฝุณ๏ฟฝ๏ฟฝ๏ฟฝัต๏ฟฝ๏ฟฝ๏ฟฝยบุค๏ฟฝ๏ฟฝ
 * @projectCode 56CMSS09
 * @tor
 * @package core
@@ -8,13 +8,14 @@
 * @access public
 * @created 03/07/2014
 */
-//@modify Supachai 03/07/2014 ไฟล์ถูกสร้างขึ้นมาสำหรับการตรวจคุณสมบัติรายบุคคล
+//@modify Supachai 03/07/2014 ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝูก๏ฟฝ๏ฟฝ๏ฟฝาง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝับ๏ฟฝ๏ฟฝรต๏ฟฝวจ๏ฟฝุณ๏ฟฝ๏ฟฝ๏ฟฝัต๏ฟฝ๏ฟฝ๏ฟฝยบุค๏ฟฝ๏ฟฝ
+
 session_start();
 $session_siteid = ($_SESSION['secid'] != '') ? $_SESSION['secid'] : $_SESSION['siteid'];
-if(trim($_GET['service']) == ''){ # ตรวจว่าเรียกจากโปรแกรมไหน
+if(trim($_GET['service']) == ''){ # ๏ฟฝ๏ฟฝวจ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยก๏ฟฝาก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหน
 	$_GET['service'] = 'c1';
 }elseif($session_siteid == ''){
-	$session_siteid = '5001';	
+	$session_siteid = '5001';
 }
 
 $toFolder = "../../../repo_cmss/logic_result/";
@@ -52,7 +53,7 @@ body,iframe,table,select,strong,input,div,textarea,a:link,ol,Ul {
 </style>
 <?php
 if($_GET['service'] == 'c1'){
-	$db_site=$db_app;	
+	$db_site=$db_app;
 }else{
 	$db_site="cmss_".$_GET["xsiteid"];
 }
@@ -68,17 +69,17 @@ if($_POST['bt_save_result'] != ""){
   $sql = "INSERT INTO ".VERI_TABLE."(result_id,attach_id,status_sys,status_per,staff_id,staff_label,comment,date_result)
           VALUES(NULL,'".$_POST['attach_id']."','".$_POST['check_by_system']."','".$_POST['check_by_person']."','".$_SESSION['session_staffid']."',
 		         '".$_POST['name']."','".$_POST['comment']."',NOW())";
-  mysql_db_query($db_site,$sql)or die(mysql_error());				 
+  mysql_db_query($db_site,$sql)or die(mysql_error());
   $sql_update = "UPDATE ".ATTACH_TABLE." SET person_check = '".$_POST['check_by_person']."',person_staff_check = '".$_POST['check_by_person']."',system_check = '".$_POST['check_by_system']."'
-                 WHERE attach_id = '".$_POST['attach_id']."' ";	
+                 WHERE attach_id = '".$_POST['attach_id']."' ";
   mysql_db_query($db_site,$sql_update)or die(mysql_error());
-  
+
   if($_POST[preview]=='true')
-  	echo '<script>alert("ระบบได้ทำการบันทึกผลการตรวจสอบแล้ว"); window.opener.updateRow("'.$_POST['attach_id'].'","'. $_POST['pin'].'"); window.close(); </script>';
+  	echo '<script>alert("๏ฟฝะบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝำก๏ฟฝรบัน๏ฟฝึก๏ฟฝลก๏ฟฝรต๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ"); window.opener.updateRow("'.$_POST['attach_id'].'","'. $_POST['pin'].'"); window.close(); </script>';
   else
-  	echo "<script>alert('ระบบได้ทำการบันทึกผลการตรวจสอบแล้ว');</script>";
+  	echo "<script>alert('๏ฟฝะบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝำก๏ฟฝรบัน๏ฟฝึก๏ฟฝลก๏ฟฝรต๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ');</script>";
   /*echo "<script>top.location='?letter_id=".$_GET['letter_id']."&idcard=".$_GET['idcard']."&by_person=".$_GET['by_person']."&pos=".($_GET['pos']-1)."&now=".$_GET['now']."&par=".$_GET['par']."';</script>";*/
-  				 			 
+
 }
 
 
@@ -93,8 +94,8 @@ $arr_pos_new = array();
   $sql_person = "SELECT * FROM ".ATTACH_TABLE." WHERE letter_id = '".$_GET['letter_id']."' ORDER BY order_by ASC,attach_id ASC ";
  }else{
   $sql_person = "SELECT * FROM ".ATTACH_TABLE." WHERE letter_id = '".$_GET['letter_id']."' AND pin = '".$_GET['idcard']."' ORDER BY order_by ASC,attach_id ASC ";
- } 
- 
+ }
+
  $query_person = mysql_db_query($db_site,$sql_person)or die(mysql_error());
  while($rows_person = mysql_fetch_array($query_person)){
   $arr_person[] = $rows_person['pin'];
@@ -131,8 +132,8 @@ $query_detail = mysql_db_query($db_site,$sql_detail)or die(mysql_error());
 $rows_detail = mysql_fetch_array($query_detail);
 ?>
 
-<?php //@modify Piyachon 10/07/2557 เพิ่ม div ครอบไว้กึ่งกลางหน้า ?>
-<div style="width:980px;margin:auto">						
+<?php //@modify Piyachon 10/07/2557 ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ div ๏ฟฝ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ่งก๏ฟฝางหน๏ฟฝ๏ฟฝ ?>
+<div style="width:980px;margin:auto">
 <?php
 $site = get_site_now($idcard);
 $dbname = "cmss_".$site;
@@ -145,7 +146,7 @@ if($site != ""){
   $img_name = "http://61.19.255.75/image_file/".$site."/".$rows_pic['imgname'];
  }else{
   $img_name = "http://61.19.255.75/competency_master/application/command_verification/images/nopicture.gif";
- } 
+ }
  $in_system = 1;
 }else{
  $img_name = "http://61.19.255.75/competency_master/application/command_verification/images/nopicture.gif";
@@ -153,7 +154,7 @@ if($site != ""){
 ?>
 <table width="980" border="1" cellspacing="0" cellpadding="3" bgcolor="#275980" style="border-collapse:collapse; border-style:dashed;">
   <tr>
-    <td bgcolor="#FFB9B9" align="center"><font color="#CC0000"><b>ไม่พบข้อมูลบุคลากรดังกล่าวในระบบ ไม่สามารถตรวจสอบคุณสมบัติได้</b></font></td>
+    <td bgcolor="#FFB9B9" align="center"><font color="#CC0000"><b>๏ฟฝ๏ฟฝ่พบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลบุค๏ฟฝากรดัง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝะบ๏ฟฝ ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝรถ๏ฟฝ๏ฟฝวจ๏ฟฝอบ๏ฟฝุณ๏ฟฝ๏ฟฝ๏ฟฝัต๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ</b></font></td>
   </tr>
 </table>
 <?php
@@ -161,13 +162,13 @@ if($site != ""){
 
  if($_GET['validate'] == '1'){
   $img_name = "http://61.19.255.75/competency_master/application/command_verification/images/nopicture.gif";
- } 
+ }
 ?>
 <table width="980" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="189">
-<center><img src="http://61.19.255.75/competency_master/application/command_verification/images/logo_kks.png" width="64" /></center>	
-	
+<center><img src="http://61.19.255.75/competency_master/application/command_verification/images/logo_kks.png" width="64" /></center>
+
 <table width="189" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td width="25"><img src="http://61.19.255.75/competency_master/application/command_verification/img/box_01.png" width="25" /></td>
@@ -184,53 +185,53 @@ if($site != ""){
     <td background="http://61.19.255.75/competency_master/application/command_verification/img/box_11.png">&nbsp;</td>
     <td><img  src="http://61.19.255.75/competency_master/application/command_verification/img/box_13.png" width="23" /></td>
   </tr>
-</table>	
-	
+</table>
+
 	</td>
     <td width="761" valign="top">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="3" align="center">
-  
+
   <tr>
-    <td><strong><font color="#000000">คำสั่ง </font> <span class="style1"><?=get_secname($rows_command['secid'],$rows_command['profile_id'])?></span></strong></td>
+    <td><strong><font color="#000000">๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ </font> <span class="style1"><?=get_secname($rows_command['secid'],$rows_command['profile_id'])?></span></strong></td>
   </tr>
   <tr>
     <td>
 <table width="100%" border="0" cellspacing="0" cellpadding="2" class="detailContent1">
   <tr>
-    <td><div align="right"><strong style="font-family: Thai Sans Neue Regular;">เลขบัตรประชาชน</strong></div></td>
-    <td>: <?=($_GET['validate'] == '')?$idcard:"<font color='#cc0000'>ชุดข้อมูลทดสอบ</font>";?></td>
+    <td><div align="right"><strong style="font-family: Thai Sans Neue Regular;">๏ฟฝลข๏ฟฝัตรป๏ฟฝะชาช๏ฟฝ</strong></div></td>
+    <td>: <?=($_GET['validate'] == '')?$idcard:"<font color='#cc0000'>๏ฟฝุด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลท๏ฟฝ๏ฟฝอบ</font>";?></td>
   </tr>
   <tr>
-    <td width="30%"><div align="right"><strong>ชื่อ - นามสกุล</strong></div></td>
+    <td width="30%"><div align="right"><strong>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ - ๏ฟฝ๏ฟฝ๏ฟฝสก๏ฟฝ๏ฟฝ</strong></div></td>
     <td width="70%">: <font color="#000000">
-	
-	<?=($_GET['validate'] == '')?$rows_detail['prename'].$rows_detail['firstname']."  ".$rows_detail['surname']:"<font color='#cc0000'>ชุดข้อมูลทดสอบ</font>";?></font></td>
+
+	<?=($_GET['validate'] == '')?$rows_detail['prename'].$rows_detail['firstname']."  ".$rows_detail['surname']:"<font color='#cc0000'>๏ฟฝุด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลท๏ฟฝ๏ฟฝอบ</font>";?></font></td>
   </tr>
   <tr>
-    <td><div align="right"><strong>ตำแหน่งปัจจุบัน</strong></div></td>
+    <td><div align="right"><strong>๏ฟฝ๏ฟฝ๏ฟฝหน่งปัจ๏ฟฝุบัน</strong></div></td>
     <td>: <?=$rows_detail['position_id_old']?></td>
   </tr>
   <tr>
-    <td><div align="right"><strong>ระดับปัจจุบัน</strong></div></td>
+    <td><div align="right"><strong>๏ฟฝะดับ๏ฟฝัจ๏ฟฝุบัน</strong></div></td>
     <td>: <?=$rows_detail['radub_old']?></td>
   </tr>
   <tr>
-    <td><div align="right"><strong>เลขที่ตำแหน่งปัจจุบัน</strong></div></td>
+    <td><div align="right"><strong>๏ฟฝลข๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหน่งปัจ๏ฟฝุบัน</strong></div></td>
     <td>: <?=$rows_detail['position_id']?></td>
   </tr>
-  
+
   <tr>
-    <td><div align="right"><strong>ตั้งแต่วันที่</strong></div></td>
+    <td><div align="right"><strong>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัน๏ฟฝ๏ฟฝ๏ฟฝ</strong></div></td>
     <td>: <?php echo ($rows_detail['effective_date'] == '0000-00-00')?'-':dateFormat($rows_detail['effective_date'],'thaidot')?></td>
   </tr>
   <tr>
-    <td><div align="right"><strong>หน่วยงานที่สังกัด</strong></div></td>
-    <td>: 
+    <td><div align="right"><strong>หน๏ฟฝ๏ฟฝยงาน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัง๏ฟฝัด</strong></div></td>
+    <td>:
 	<?php
     $siteName = get_secname($rows_command['secid'],$rows_command['profile_id']);
 	?>
-	<?=($_GET['validate'] == '')?get_secname($rows_command['secid'],$rows_command['profile_id']):"<font color='#cc0000'>ชุดข้อมูลทดสอบ</font>";?></td>
+	<?=($_GET['validate'] == '')?get_secname($rows_command['secid'],$rows_command['profile_id']):"<font color='#cc0000'>๏ฟฝุด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลท๏ฟฝ๏ฟฝอบ</font>";?></td>
   </tr>
 </table></td>
   </tr>
@@ -244,7 +245,7 @@ if($site != ""){
   </tr>
 </table>
 
-	
+
 
 
 <?php
@@ -252,11 +253,11 @@ if($in_system == 1){
 
 $arrCond = array();
 $v14Group = 'null';
-##ถ้าเป็นคำสั่งย้าย	
+##๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ็นค๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
 if($rows_command['letter_type'] == '2'){
 	require_once "logic_simulation/variable/expProbation.php";
 ?>
-<div style="width:980px;">                        
+<div style="width:980px;">
 <div class="art-Block">
 <div class="art-Block-tl"></div>
 <div class="art-Block-tr"></div>
@@ -272,9 +273,9 @@ if($rows_command['letter_type'] == '2'){
 <div class="l"></div>
 <div class="r"></div>
 
- <!-- <div class="t"><label id="success"><img src="img/loading1.gif" align="absmiddle"></label>&nbsp;<font color="#000000" style="text-shadow: #ffffff 0.1em 0.1em 0.2em;">การตรวจสอบการทดลองปฏิบัติราชการ</font></div>
+ <!-- <div class="t"><label id="success"><img src="img/loading1.gif" align="absmiddle"></label>&nbsp;<font color="#000000" style="text-shadow: #ffffff 0.1em 0.1em 0.2em;">๏ฟฝ๏ฟฝรต๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝรท๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝิบัต๏ฟฝ๏ฟฝาช๏ฟฝ๏ฟฝ๏ฟฝ</font></div>
   -->
-  <div class="t"><label id="success"></label>&nbsp;<font color="#000000" style="text-shadow: #ffffff 0.1em 0.1em 0.2em;">การตรวจสอบการทดลองปฏิบัติราชการ</font></div>
+  <div class="t"><label id="success"></label>&nbsp;<font color="#000000" style="text-shadow: #ffffff 0.1em 0.1em 0.2em;">๏ฟฝ๏ฟฝรต๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝรท๏ฟฝ๏ฟฝอง๏ฟฝ๏ฟฝิบัต๏ฟฝ๏ฟฝาช๏ฟฝ๏ฟฝ๏ฟฝ</font></div>
 
 </div><div class="art-BlockContent">
 <div class="art-BlockContent-body">
@@ -283,33 +284,33 @@ if($rows_command['letter_type'] == '2'){
 	$objExp = new expProbation($idcard,$rows_detail['pid_new'],$rows_detail['level_id_new'],$rows_detail['effective_date'],'6');
      $result = $objExp->checkExp();
      $objExp->showExp();
-	 
+
 	 $resultCond = '';
-	 
+
 	 if($result){
    		$arrCond[] = "(1==1)";
-        $txt = "<img src=\"images/accept.png\" align=\"absmiddle\" />&nbsp;<font color=\"#275980\"><b>ผ่านเงื่อนไข</b></font>";
+        $txt = "<img src=\"images/accept.png\" align=\"absmiddle\" />&nbsp;<font color=\"#275980\"><b>๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ</b></font>";
 		echo "<script>document.getElementById('success').innerHTML = '<img src=\"images/accept.png\" align=\"absmiddle\" />';</script>";
 		$resultCond = 1;
-     }else{   
+     }else{
         $arrCond[] = "(1==0)";
-        $txt = "<img src=\"images/error.png\" align=\"absmiddle\" />&nbsp;<font color=\"#FF0000\"><b>ไม่ผ่านเงื่อนไข</b></font>";
+        $txt = "<img src=\"images/error.png\" align=\"absmiddle\" />&nbsp;<font color=\"#FF0000\"><b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ</b></font>";
         echo "<script>document.getElementById('success').innerHTML = '<img src=\"images/error.png\" align=\"absmiddle\" />';</script>";
 		$resultCond = 0;
      }
-	 
-	 
+
+
 	 ##add log
-	 $sqlCheck = "SELECT * FROM ".LOG_VERI_TABLE." WHERE idcard = '".$rows_detail['pin']."' AND 
-	                                             attach_id = '".$rows_detail['attach_id']."' AND 
+	 $sqlCheck = "SELECT * FROM ".LOG_VERI_TABLE." WHERE idcard = '".$rows_detail['pin']."' AND
+	                                             attach_id = '".$rows_detail['attach_id']."' AND
 												 letter_id = '".$rows_command['letter_id']."' ";
 	 $queryCheck = mysql_db_query($db_site,$sqlCheck)or die(mysql_error());
-	 $numCheck = mysql_num_rows($queryCheck);											 
+	 $numCheck = mysql_num_rows($queryCheck);
 	 if($numCheck > 0){
 		$sqlLog = "UPDATE ".LOG_VERI_TABLE." SET verify_probation = '".$resultCond."',
 		                                  time_update = NOW()
-		           WHERE idcard = '".$rows_detail['pin']."' AND 
-	                     attach_id = '".$rows_detail['attach_id']."' AND 
+		           WHERE idcard = '".$rows_detail['pin']."' AND
+	                     attach_id = '".$rows_detail['attach_id']."' AND
 						 letter_id = '".$rows_command['letter_id']."' ";
 	 }else{
 		$sqlLog = "INSERT INTO ".LOG_VERI_TABLE." SET idcard = '".$rows_detail['pin']."',
@@ -318,16 +319,16 @@ if($rows_command['letter_type'] == '2'){
 											  verify_probation = '".$resultCond."',
 											  time_update = NOW() ";
 	 }
-	 mysql_db_query($db_site,$sqlLog)or die(mysql_error()); 											 
+	 mysql_db_query($db_site,$sqlLog)or die(mysql_error());
      if($rowsCond['gcond_id'] == '8'){
 	     $sqlUpdateHelp = "UPDATE ".ATTACH_TABLE." SET help_status = '".$objProcess->help."' WHERE attach_id = '".$rows_detail['attach_id']."' ";
 	     mysql_db_query($db_site,$sqlUpdateHelp);
      }
      ##end log
-	 
-	 
-	 
-	 
+
+
+
+
 	   $v14Group = checkV14Group($rows_detail['pid_old'],$rows_detail['pid_new']);
   ?>
    <br />
@@ -349,28 +350,28 @@ WHERE t1.letter_type = '{$rows_command[letter_type]}' ";
 $result_logic = mysql_db_query($db_app,$sql);
 list($config_letter_type) = mysql_fetch_row($result_logic);
 
-##ถ้าเป็นคำสั่งเลื่อน หรือ มีการย้ายแบบเปลี่ยนกลุ่ม
+##๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ็นค๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝีก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝแบบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
 //if($rows_command['letter_type'] == '1' or ($rows_command['letter_type'] == '2' and $v14Group == '0')){
 if($config_letter_type == 1){
  // echo "BBB<hr>";
   $letter_type = '1';
-  ##มีการย้ายแบบเปลี่ยนกลุ่ม
+  ##๏ฟฝีก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝแบบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
   if($rows_command['letter_type'] == '2' and $v14Group == '0'){
       echo '<div style="border:1px solid #00274F; width:980px; border-style:dashed; background-color: #00172F; color:#FFFFFF; padding:3px;">';
-      echo '<img src="images/exclamation.png" align="absmiddle" />&nbsp;มีการย้ายแบบเปลี่ยนกลุ่มตำแหน่ง( ตามหนังสือ ศธ 0206.5/ว 14) ดำเนินการตรวจสอบมาตรฐานตำแหน่ง';
+      echo '<img src="images/exclamation.png" align="absmiddle" />&nbsp;๏ฟฝีก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝแบบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหน๏ฟฝ๏ฟฝ( ๏ฟฝ๏ฟฝ๏ฟฝหนัง๏ฟฝ๏ฟฝ๏ฟฝ ศธ 0206.5/๏ฟฝ 14) ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝิน๏ฟฝ๏ฟฝรต๏ฟฝวจ๏ฟฝอบ๏ฟฝาตรฐาน๏ฟฝ๏ฟฝ๏ฟฝหน๏ฟฝ๏ฟฝ';
       echo '</div><br>';
   }
-  
+
 ##get Logic
 
 $pid = empty($rows_detail['pid_new'])?$rows_detail['pid_old']:$rows_detail['pid_new'];
 $lvid = empty($rows_detail['level_id_new'])?$rows_detail['level_id_old']:$rows_detail['level_id_new'];
 
-//@modify Supachai 21/2/2558 ระบบงานเลขานุการ อ.ก.ค.ศ.เขตพื้นที่การศึกษา (agenda) ปิดเงื่อนไข ตรวจสอบกฎหมาย มาตรา 53 
+//@modify Supachai 21/2/2558 ๏ฟฝะบ๏ฟฝ๏ฟฝาน๏ฟฝลขานุก๏ฟฝ๏ฟฝ ๏ฟฝ.๏ฟฝ.๏ฟฝ.๏ฟฝ.เขต๏ฟฝ๏ฟฝ้นท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝึก๏ฟฝ๏ฟฝ (agenda) ๏ฟฝิด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ ๏ฟฝ๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝาต๏ฟฝ๏ฟฝ 53
 $me53 = $_GET['service']=='c2'?'AND cmd_condition.cond_id <> "26"':'';
 //@end
 
-$sqlCond = "SELECT cmd_condition.*,cmd_position_match_condition.cond_id,cmd_position_match_condition.period,cmd_position_match_condition.match_id 
+$sqlCond = "SELECT cmd_condition.*,cmd_position_match_condition.cond_id,cmd_position_match_condition.period,cmd_position_match_condition.match_id
             FROM cmd_position_match_condition
             JOIN cmd_position_radub ON cmd_position_radub.match_id = cmd_position_match_condition.match_id
 			JOIN cmd_condition ON cmd_position_match_condition.cond_id = cmd_condition.cond_id
@@ -380,7 +381,7 @@ $sqlCond = "SELECT cmd_condition.*,cmd_position_match_condition.cond_id,cmd_posi
 					cmd_position_radub.level_id = '".$lvid."'
 					$me53
 			ORDER BY cmd_condition.sortable";
-			
+
 if($_GET['debug'] == 'on'){
 	echo "<pre>";
 	echo $sqlCond;
@@ -402,7 +403,7 @@ while($row_data = mysql_fetch_assoc($result1)){
 $queryCond = mysql_db_query($db_app,$sqlCond)or die(mysql_error());
 $numCond = mysql_num_rows($queryCond);
 if($numCond > 0){
-$i = 1;					
+$i = 1;
 ?>
 <style>
 .logic {
@@ -421,24 +422,24 @@ $i = 1;
 	color:#6A3500;
 }
 </style>
-<form action="<?php echo $action;?>" method="post" onsubmit="return save_logic_result();" enctype="multipart/form-data">			
+<form action="<?php echo $action;?>" method="post" onsubmit="return save_logic_result();" enctype="multipart/form-data">
 <table width="980" class="logic">
 	<tr>
-    	<th rowspan="2" width="5%">ลำดับ</th>
-        <th rowspan="2" width="20%">ตรรกะ</th>
-        <th rowspan="2">คำอธิบาย</th>
-        <th colspan="2">การตรวจสอบ</th>
-        <th rowspan="2" width="20%">อ้างอิง</th>
+    	<th rowspan="2" width="5%">๏ฟฝำดับ</th>
+        <th rowspan="2" width="20%">๏ฟฝ๏ฟฝรก๏ฟฝ</th>
+        <th rowspan="2">๏ฟฝ๏ฟฝอธิบ๏ฟฝ๏ฟฝ</th>
+        <th colspan="2">๏ฟฝ๏ฟฝรต๏ฟฝวจ๏ฟฝอบ</th>
+        <th rowspan="2" width="20%">๏ฟฝ๏ฟฝาง๏ฟฝิง</th>
     </tr>
     <tr>
-    	<th width="7%">โดยระบบ</th>
-        <th width="7%">โดยเจ้าหน้าที่</th>
+    	<th width="7%">๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝะบ๏ฟฝ</th>
+        <th width="7%">๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหน๏ฟฝาท๏ฟฝ๏ฟฝ</th>
     </tr>
 <?php
-while($rowsCond = mysql_fetch_array($queryCond)){ 
+while($rowsCond = mysql_fetch_array($queryCond)){
 	$var_id = str_replace("(","",$rowsCond[cond_eval]);
 	$var_id = str_replace("==true)","",$var_id );
-	
+
 	$SQL_chk_type="SELECT
 	t1.var_id,
 	t1.var_type
@@ -447,12 +448,12 @@ while($rowsCond = mysql_fetch_array($queryCond)){
 	WHERE var_id='".$var_id."'";
 	$querychk_type = mysql_db_query($db_app,$SQL_chk_type)or die(mysql_error());
 	$rowchk_type = mysql_fetch_array($querychk_type);
-	
+
 	if($rowsCond['gcond_id'] == '1'){
 		$objEdu = new education($idcard);
 		$arr_edu = $objEdu->getEducation();
 		$objEdu->showEducation();
-	} 
+	}
 
 	if($rowsCond['gcond_id'] == '4'){
 		$objClass = new getPosition($idcard,$rows_detail['effective_date']);
@@ -468,55 +469,55 @@ while($rowsCond = mysql_fetch_array($queryCond)){
 		//echo $idcard." 1 ".$rows_detail['attach_id']." 2 ".$rowsCond['cond_eval']." 3 ".$rowsCond['period']." 4 ".$eduId, $rows_detail['level_id_new'];
 		$objProcess = new logicProcess($idcard, $rows_detail['attach_id'], $rowsCond['cond_eval'], $rowsCond['period'], $eduId, $rows_detail['level_id_new']);
 		$result = $objProcess->process();
-		
+
 		$resultCond = '';
 		$txt = '';
 		$ref_text = '';
 		if($result){
 			$arrCond[] = "(1==1)";
 			$resultCond = 1;
-		   
+
 			$eduName = '';
 			if($rowsCond['gcond_id'] == '1'){
 				$eduName = " <font color='#000000'>".$objProcess->eduName.'</font>';
 			}
-			$system_result = "<font color=\"#275980\"><b>ผ่าน $eduName</b></font>";
+			$system_result = "<font color=\"#275980\"><b>๏ฟฝ๏ฟฝาน $eduName</b></font>";
 			$txt.="<br>";
 			if($rowchk_type[var_type]=="4"){
 				if($array_result[$rowsCond['cond_id']]['ref_text'] != ''){
-					$ref_text = "<b>หมายเหตุ</b><br>".$array_result[$rowsCond['cond_id']]['ref_text'];
+					$ref_text = "<b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหต๏ฟฝ</b><br>".$array_result[$rowsCond['cond_id']]['ref_text'];
 				}
-				
+
 				if($array_result[$rowsCond['cond_id']]['ref_file'] != ''){
-					$ref_text .= ($array_result[$rowsCond['cond_id']]['ref_file'] != '') ? '<br><br><b>ไฟล์แนบ</b> : <a href="'.$toFolder.$rows_command['secid']."/".$array_result[$rowsCond['cond_id']]['ref_file'].'" target="_blank">ดาวน์โหลดไฟล์แนบ</a>' : '<br><br><b>ไฟล์แนบ</b> :';
+					$ref_text .= ($array_result[$rowsCond['cond_id']]['ref_file'] != '') ? '<br><br><b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝแนบ</b> : <a href="'.$toFolder.$rows_command['secid']."/".$array_result[$rowsCond['cond_id']]['ref_file'].'" target="_blank">๏ฟฝ๏ฟฝวน๏ฟฝ๏ฟฝ๏ฟฝลด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝแนบ</a>' : '<br><br><b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝแนบ</b> :';
 				}
-				
+
 				if($array_result[$rowsCond['cond_id']]['person_result'] == '1'){
-					$txt = "<font color=\"#275980\"><b>ผ่าน $eduName</b></font>";
+					$txt = "<font color=\"#275980\"><b>๏ฟฝ๏ฟฝาน $eduName</b></font>";
 				}elseif($array_result[$rowsCond['cond_id']]['person_result']  == '0'){
-					$txt = "<font color=\"#FF0000\"><b>ไม่ผ่าน</b></font>";
+					$txt = "<font color=\"#FF0000\"><b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาน</b></font>";
 				}
 			}
 		 }else{
-			if($rowsCond['gcond_id'] != '6'){ //ถ้าเป็นการตรวจสอบ กรอบ จะเป็น จริงเสมอ	 
+			if($rowsCond['gcond_id'] != '6'){ //๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ็นก๏ฟฝรต๏ฟฝวจ๏ฟฝอบ ๏ฟฝ๏ฟฝอบ ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝ๏ฟฝิง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
 				$arrCond[] = "(1==0)";
 			}else{
 				$arrCond[] = "(1==1)";
 			}
 			$resultCond = 0;
 			if($rowsCond['gcond_id'] == '2' or $rowsCond['gcond_id'] == '3' or $rowsCond['gcond_id'] == '8' or $rowsCond['gcond_id'] == '9'){
-				//ตรวจสอบตำแหน่งที่ไม่ได้ 38ค
+				//๏ฟฝ๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝหน่งท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ 38๏ฟฝ
 				$objUtility = new utility;
 				if($objUtility->check38kPos($idcard,$rows_detail['effective_date'])){
-					$warning = '<br><br><font color="#cc0000"><img src="images/exclamation.png" align="absmiddle">&nbsp;<b>ระบบตรวจพบประวัติการรับราชการของ '.$rows_detail['prename'].$rows_detail['firstname'].'  '.$rows_detail['surname'].' ในตำแหน่งที่ไม่ใช่บุคลากรทางการศึกษาตามมาตรา 38ค.(2)</b></font>';
+					$warning = '<br><br><font color="#cc0000"><img src="images/exclamation.png" align="absmiddle">&nbsp;<b>๏ฟฝะบ๏ฟฝ๏ฟฝ๏ฟฝวจ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัติก๏ฟฝ๏ฟฝ๏ฟฝับ๏ฟฝาช๏ฟฝ๏ฟฝรของ '.$rows_detail['prename'].$rows_detail['firstname'].'  '.$rows_detail['surname'].' ในต๏ฟฝ๏ฟฝหน่งท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝุค๏ฟฝากรทาง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝึก๏ฟฝาต๏ฟฝ๏ฟฝ๏ฟฝาต๏ฟฝ๏ฟฝ 38๏ฟฝ.(2)</b></font>';
 				}else{
 					$warning = '';
 				}
-				$help_txt = "<font color='#000000'><br><u><b><em>ข้อแนะนำ</em></b></u> <b>กรุณาตรวจสอบข้อมูลต่อไปนี้เพิ่มเติม</b> <br>&bull;&nbsp;คำสั่งให้ปฏิบัติราชการ<br>&bull;&nbsp;ทะเบียนประวัติของข้าราชการท่านนี้<br>&bull;&nbsp;ประสบการณ์การดำรงตำแหน่งโดยเงื่อนไขอื่นๆ</font>";
+				$help_txt = "<font color='#000000'><br><u><b><em>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝะน๏ฟฝ</em></b></u> <b>๏ฟฝ๏ฟฝุณาต๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลต๏ฟฝ๏ฟฝไปน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ</b> <br>&bull;&nbsp;๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ้ปฏิบัต๏ฟฝ๏ฟฝาช๏ฟฝ๏ฟฝ๏ฟฝ<br>&bull;&nbsp;๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัติของ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาช๏ฟฝ๏ฟฝรท๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ<br>&bull;&nbsp;๏ฟฝ๏ฟฝ๏ฟฝสบ๏ฟฝ๏ฟฝรณ๏ฟฝ๏ฟฝ๏ฟฝรด๏ฟฝรง๏ฟฝ๏ฟฝ๏ฟฝหน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ</font>";
 			}else{
 				$help_txt = "";
 			}
-	   
+
 			if($array_result[$rowsCond['cond_id']]['person_result']  == '1'){
 				$check1 = "checked=\"checked\"";
 				$check2 = "";
@@ -524,27 +525,27 @@ while($rowsCond = mysql_fetch_array($queryCond)){
 				$check1 = "";
 				$check2 = "checked=\"checked\"";
 			}
-	   
-			$system_result = "<font color=\"#FF0000\"><b>ไม่ผ่าน</b></font>".$help_txt.$warning;
-			
+
+			$system_result = "<font color=\"#FF0000\"><b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาน</b></font>".$help_txt.$warning;
+
 			if($array_result[$rowsCond['cond_id']]['ref_text'] != ''){
-				$ref_text = "<b>หมายเหตุ</b><br>".$array_result[$rowsCond['cond_id']]['ref_text'];
+				$ref_text = "<b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหต๏ฟฝ</b><br>".$array_result[$rowsCond['cond_id']]['ref_text'];
 			}
-			
-			
+
+
 			if($array_result[$rowsCond['cond_id']]['ref_file'] != ''){
-				$ref_text .= ($array_result[$rowsCond['cond_id']]['ref_file'] != '') ? '<br><br><b>ไฟล์แนบ</b> : <a href="'.$toFolder.$rows_command['secid']."/".$array_result[$rowsCond['cond_id']]['ref_file'].'" target="_blank">ดาวน์โหลดไฟล์แนบ</a>' : '<br><br><b>ไฟล์แนบ</b> :';
+				$ref_text .= ($array_result[$rowsCond['cond_id']]['ref_file'] != '') ? '<br><br><b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝแนบ</b> : <a href="'.$toFolder.$rows_command['secid']."/".$array_result[$rowsCond['cond_id']]['ref_file'].'" target="_blank">๏ฟฝ๏ฟฝวน๏ฟฝ๏ฟฝ๏ฟฝลด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝแนบ</a>' : '<br><br><b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝแนบ</b> :';
 			}
-			
+
 			if($array_result[$rowsCond['cond_id']]['person_result'] == '1'){
-				$txt = "<font color=\"#275980\"><b>ผ่าน $eduName</b></font>";
+				$txt = "<font color=\"#275980\"><b>๏ฟฝ๏ฟฝาน $eduName</b></font>";
 			}elseif($array_result[$rowsCond['cond_id']]['person_result']  == '0'){
-				$txt = "<font color=\"#FF0000\"><b>ไม่ผ่าน</b></font>";
+				$txt = "<font color=\"#FF0000\"><b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาน</b></font>";
 			}
-	
+
 			 $objProcess->getReturnId();
 			 if($rowsCond['gcond_id'] == '1'){
-				$eduId = $objProcess->getReturnId(); 
+				$eduId = $objProcess->getReturnId();
 			 }
 	 	}?>
         </td>
@@ -552,23 +553,23 @@ while($rowsCond = mysql_fetch_array($queryCond)){
         <td align="center"><?=$txt?></td>
         <td valign="top"><?=$ref_text?></td>
     </tr>
-<?php 
+<?php
  ##add log
 $sqlField = "SELECT * FROM config_field_result WHERE gcond_id = '".$rowsCond['gcond_id']."' ";
 $queryField = mysql_db_query($db_app,$sqlField)or die(mysql_error());
 $rowsField = mysql_fetch_array($queryField);
 
 if($rowsField['field_result'] != ''){
-	$sqlCheck = "SELECT * FROM ".LOG_VERI_TABLE." WHERE idcard = '".$rows_detail['pin']."' AND 
-	attach_id = '".$rows_detail['attach_id']."' AND 
+	$sqlCheck = "SELECT * FROM ".LOG_VERI_TABLE." WHERE idcard = '".$rows_detail['pin']."' AND
+	attach_id = '".$rows_detail['attach_id']."' AND
 	letter_id = '".$rows_command['letter_id']."' ";
 	$queryCheck = mysql_db_query($db_app_site,$sqlCheck)or die(mysql_error());
-	$numCheck = mysql_num_rows($queryCheck);								 
+	$numCheck = mysql_num_rows($queryCheck);
 	if($numCheck > 0){
 		$sqlLog = "UPDATE ".LOG_VERI_TABLE." SET ".$rowsField['field_result']." = '".$resultCond."',
 		time_update = NOW()
-		WHERE idcard = '".$rows_detail['pin']."' AND 
-		attach_id = '".$rows_detail['attach_id']."' AND 
+		WHERE idcard = '".$rows_detail['pin']."' AND
+		attach_id = '".$rows_detail['attach_id']."' AND
 		letter_id = '".$rows_command['letter_id']."' ";
 	}else{
 		$sqlLog = "INSERT INTO ".LOG_VERI_TABLE." SET idcard = '".$rows_detail['pin']."',
@@ -577,24 +578,24 @@ if($rowsField['field_result'] != ''){
 		".$rowsField['field_result']." = '".$resultCond."',
 		time_update = NOW() ";
 	}
-	mysql_db_query($db_app_site,$sqlLog)or die(mysql_error()); 											 
+	mysql_db_query($db_app_site,$sqlLog)or die(mysql_error());
 }
 
 if($rowsCond['gcond_id'] == '8'){
 	$sqlUpdateHelp = "UPDATE ".ATTACH_TABLE." SET help_status = '".$objProcess->help."' WHERE attach_id = '".$rows_detail['attach_id']."' ";
 	mysql_db_query($db_app_site,$sqlUpdateHelp);
 }
-$i++;} 
+$i++;}
 ?>
 </table>
-<?    
+<?
 }else{
 	//echo "CCCCC<hr>";
 	if($rows_command['letter_type'] == '1' or $rows_command['letter_type'] == '2'){
-		$txt_info = "ไม่พบตรรกะการตรวจสอบตำแหน่ง ".$rows_detail['position_id_new']." ระดับ ".$rows_detail['radub_new'];
+		$txt_info = "๏ฟฝ๏ฟฝ่พบ๏ฟฝ๏ฟฝรกะก๏ฟฝรต๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝหน๏ฟฝ๏ฟฝ ".$rows_detail['position_id_new']." ๏ฟฝะดับ ".$rows_detail['radub_new'];
 	}else{
-        $txt_info = "ระบบไม่รองรับการตรวจสอบคำสั่ง ประเภท ".$rows_command['letter_type_name']."<br>";
-		$txt_info .= "<em>ประเภทคำสั่งที่ระบบรองรับได้แก่ การเลื่อนและแต่งตั้ง,ย้ายและแต่งตั้ง<em>";
+        $txt_info = "๏ฟฝะบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝับ๏ฟฝ๏ฟฝรต๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ".$rows_command['letter_type_name']."<br>";
+		$txt_info .= "<em>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ่งท๏ฟฝ๏ฟฝ๏ฟฝะบ๏ฟฝ๏ฟฝอง๏ฟฝับ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ่งต๏ฟฝ๏ฟฝ๏ฟฝ,๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ่งต๏ฟฝ๏ฟฝ๏ฟฝ<em>";
 	}
 ?>
 <br />
@@ -607,14 +608,14 @@ $i++;}
 <br />
 <br />
 
-<?php 
+<?php
 }
 
 }else{
-	
+
 	if($rows_command['letter_type'] != '1' and $rows_command['letter_type'] != '2'){
-        $txt_info = "ระบบไม่รองรับการตรวจสอบคำสั่ง ประเภท ".$rows_command['letter_type_name']."<br>";
-		$txt_info .= "<em>ประเภทคำสั่งที่ระบบรองรับได้แก่ การเลื่อนและแต่งตั้ง,ย้ายและแต่งตั้ง<em>";
+        $txt_info = "๏ฟฝะบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอง๏ฟฝับ๏ฟฝ๏ฟฝรต๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ".$rows_command['letter_type_name']."<br>";
+		$txt_info .= "<em>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ่งท๏ฟฝ๏ฟฝ๏ฟฝะบ๏ฟฝ๏ฟฝอง๏ฟฝับ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ่งต๏ฟฝ๏ฟฝ๏ฟฝ,๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ่งต๏ฟฝ๏ฟฝ๏ฟฝ<em>";
 ?>
 <br />
 <br />
@@ -625,9 +626,9 @@ $i++;}
 </table>
 <br />
 <br />
-<?php		
+<?php
 	}
-	
+
 ?>
 
 <?php
@@ -641,7 +642,7 @@ $i++;}
 if($_GET['validate'] == ''){
 ?>
 
-<div style="width:980px;">                        
+<div style="width:980px;">
 <div class="art-Block">
 <div class="art-Block-tl"></div>
 <div class="art-Block-tr"></div>
@@ -660,13 +661,13 @@ if($_GET['validate'] == ''){
 <table width="100%" border="0" cellspacing="0" cellpadding="3">
   <!--<tr>
     <td>&nbsp;</td>
-    <td align="right"><a href="#" onClick="window.open('attach_result_history.php?attach_id=<?=$attach_id?>','_blank','addres=no,toolbar=no,status=yes,scrollbars=yes,width=900,height=350');"><font color="#FF9900"><img src="img/find.png" align="absmiddle"  border="0"/><b>ประวัติการตรวจสอบ</b></font></font></a>
+    <td align="right"><a href="#" onClick="window.open('attach_result_history.php?attach_id=<?=$attach_id?>','_blank','addres=no,toolbar=no,status=yes,scrollbars=yes,width=900,height=350');"><font color="#FF9900"><img src="img/find.png" align="absmiddle"  border="0"/><b>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัติก๏ฟฝรต๏ฟฝวจ๏ฟฝอบ</b></font></font></a>
     <br />
 
     <?php
-	
+
     if($rows_detail['person_check'] != ''){
-		
+
 		$sqlDoc = "SELECT doc_id FROM result_document WHERE letter_id = '".$rows_detail['letter_id']."' AND attach_id = '".$rows_detail['attach_id']."' ";
 		$queryDoc = mysql_db_query($db_app,$sqlDoc)or die(mysql_error());
 		$numDoc = mysql_num_rows($queryDoc);
@@ -676,66 +677,66 @@ if($_GET['validate'] == ''){
 		}else{
 			$edit = "";
 		}
-		
+
 		if($rows_detail['person_check'] == '2'){
-		  $verifyResult = 'ทักท้วง';
+		  $verifyResult = '๏ฟฝัก๏ฟฝ๏ฟฝวง';
 	    }
 	    if($rows_detail['person_check'] == '1'){
-		  $verifyResult = 'รับทราบ';
+		  $verifyResult = '๏ฟฝับ๏ฟฝ๏ฟฝาบ';
 	   }
-		
+
 		$sqlPerson = "SELECT attach_id FROM ".ATTACH_TABLE." WHERE letter_id = '".$rows_detail['letter_id']."' ";
 	    $queryPerson = mysql_db_query($db_site,$sqlPerson)or die(mysql_error());
 	    $numPerson = mysql_num_rows($queryPerson);
-		
+
 		$name = $rows_detail['prename'].$rows_detail['firstname']."  ".$rows_detail['surname'];
-		
-		
-		echo '<a href="#" onclick="window.open(\'index.php?p=result_document&letter_id='.$rows_detail['letter_id'].'&attach_id='.$rows_detail['attach_id'].'&siteName='.$siteName.'&noOrder='.$noOrder.'&dateOrder='.$dateOrder.'&numPerson='.$numPerson.'&verifyResult='.$verifyResult.'&name='.$name.'&reason='.$reason.'&doc_type=&doc_id='.$rowsDoc['doc_id'].'&page=2&edit='.$edit.'\', \'mywindow\',\'location=1,status=1,scrollbars=1, width=1327,height=1169\')"><img src="images/page_white_paintbrush.png" align="absmiddle" border="0"><font color="#000000"><b>ร่างหนังสือตอบรับ</b></font> </a>';
-		
-		
+
+
+		echo '<a href="#" onclick="window.open(\'index.php?p=result_document&letter_id='.$rows_detail['letter_id'].'&attach_id='.$rows_detail['attach_id'].'&siteName='.$siteName.'&noOrder='.$noOrder.'&dateOrder='.$dateOrder.'&numPerson='.$numPerson.'&verifyResult='.$verifyResult.'&name='.$name.'&reason='.$reason.'&doc_type=&doc_id='.$rowsDoc['doc_id'].'&page=2&edit='.$edit.'\', \'mywindow\',\'location=1,status=1,scrollbars=1, width=1327,height=1169\')"><img src="images/page_white_paintbrush.png" align="absmiddle" border="0"><font color="#000000"><b>๏ฟฝ๏ฟฝางหนัง๏ฟฝ๏ฟฝอตอบ๏ฟฝับ</b></font> </a>';
+
+
 		if($numDoc > 0){
-			
+
 			echo '&nbsp;&nbsp;<a href="pdf_gen.php?doc_id='.$rowsDoc['doc_id'].'" target="_blank"">[Download]<img src="images/pdf.gif" align="absmiddle" border="0"></a>';
 		}
-		
+
 	}else{
-	  echo '<font color="#999999">กรุณาบันทึกผลการตรวจสอบก่อน</font>';	
+	  echo '<font color="#999999">๏ฟฝ๏ฟฝุณาบัน๏ฟฝึก๏ฟฝลก๏ฟฝรต๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝอน</font>';
 	}
 	?>
-    
+
     </td>
   </tr>-->
   <tr>
-    <td width="30%"><div align="right"><strong>ผลการตรวสอบโดยระบบ</strong></div></td>
+    <td width="30%"><div align="right"><strong>๏ฟฝลก๏ฟฝรต๏ฟฝ๏ฟฝ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝะบ๏ฟฝ</strong></div></td>
     <td width="70%">
 	</font>
 	<?php
 	if($strCond){
-	  echo "<img src=\"images/accept.png\" align=\"absmiddle\" /> <font color=\"#275980\"><b>[ผ่าน]</b></font>";
+	  echo "<img src=\"images/accept.png\" align=\"absmiddle\" /> <font color=\"#275980\"><b>[๏ฟฝ๏ฟฝาน]</b></font>";
 	  echo "<script>document.getElementById('menu_tab').innerHTML = '<img src=\"images/accept.png\" align=\"absmiddle\" />';</script>";
 	  $check_by_system = 1;
 	}else{
-	  echo "<img src=\"images/error.png\" align=\"absmiddle\" /> <font color=\"#cc0000\"><b>[ไม่ผ่าน]</b></font>";
+	  echo "<img src=\"images/error.png\" align=\"absmiddle\" /> <font color=\"#cc0000\"><b>[๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาน]</b></font>";
 	  echo "<script>document.getElementById('menu_tab').innerHTML = '<img src=\"images/error.png\" align=\"absmiddle\" />';</script>";
 	  $check_by_system = 0;
 	}
-	
-	
+
+
 	##update result
 	if($in_system == 0){
 		$check_by_system = 99;
     }
 	$sqlUpdateResult = "UPDATE ".ATTACH_TABLE." SET system_check = '".$check_by_system."' WHERE attach_id = '".$rows_detail['attach_id']."' ";
 	mysql_db_query($db_site,$sqlUpdateResult)or die(mysql_error());
-	$sqlUpdateLog = "UPDATE log_verify SET verify_result = '".$check_by_system."' 
-	                 WHERE  idcard = '".$rows_detail['pin']."' AND 
-	                        attach_id = '".$rows_detail['attach_id']."' AND 
+	$sqlUpdateLog = "UPDATE log_verify SET verify_result = '".$check_by_system."'
+	                 WHERE  idcard = '".$rows_detail['pin']."' AND
+	                        attach_id = '".$rows_detail['attach_id']."' AND
 						    letter_id = '".$rows_command['letter_id']."' ";
 	mysql_db_query($db_app,$sqlUpdateLog)or die(mysql_error());
-							
-	
-	
+
+
+
 	?>
 	<input name="check_by_system" type="hidden" value="<?=$check_by_system?>" />
 	<input name="attach_id" type="hidden" value="<?=$attach_id?>" />
@@ -743,8 +744,8 @@ if($_GET['validate'] == ''){
     <input name="preview" type="hidden" value="<?=$_GET[preview]?>" />
     </td>
   </tr>
-  <?php 
-	//@modify Supachai 19/07/2014 แก้ไขให้ดึงค่าจากฐานข้อมูล
+  <?php
+	//@modify Supachai 19/07/2014 ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝึง๏ฟฝ๏ฟฝาจาก๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
 	$verify_sql='SELECT
 						*
 					FROM
@@ -754,29 +755,29 @@ if($_GET['validate'] == ''){
 					ORDER BY date_result DESC
 					LIMIT 1';
 	$verify_query = mysql_db_query($db_site,$verify_sql);
-	$verify_data = mysql_fetch_assoc($verify_query);	
+	$verify_data = mysql_fetch_assoc($verify_query);
   if($verify_data[status_per]){
 ?>
   <tr>
-    <td><div align="right"><strong>ผลการตรวจสอบโดยเจ้าหน้าที่</strong></div></td>
-	
+    <td><div align="right"><strong>๏ฟฝลก๏ฟฝรต๏ฟฝวจ๏ฟฝอบ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหน๏ฟฝาท๏ฟฝ๏ฟฝ</strong></div></td>
+
     <td>
 		<?php
 			if($verify_data[status_per]=="1"){
-				echo "ผ่าน โดยมีเงื่อนไข";
+				echo "๏ฟฝ๏ฟฝาน ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอน๏ฟฝ๏ฟฝ";
 			}if($verify_data[status_per]=="2"){
-				echo "ไม่ผ่าน";
+				echo "๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาน";
 			}
 		?>
 	</td>
 	<? //@end ?>
   </tr>
   <tr>
-    <td><div align="right"><strong>ชื่อเจ้าหน้าที่ผู้ตรวจสอบ</strong></div></td>
+    <td><div align="right"><strong>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหน๏ฟฝาท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝวจ๏ฟฝอบ</strong></div></td>
     <td><?php echo $verify_data[staff_label];?></td>
   </tr>
   <tr>
-    <td valign="top"><div align="right"><strong>หมายเหตุ</strong></div></td>
+    <td valign="top"><div align="right"><strong>๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝหต๏ฟฝ</strong></div></td>
     <td><?php echo $verify_data[comment];?></td>
   </tr>
   <?php }?>
@@ -796,18 +797,18 @@ if($_GET['validate'] == ''){
 }else{
    echo '<div style="width:980px; margin-left:5px;border:1px solid #00274F; border-style:dashed; background-color: #00172F; color:#FFFFFF; padding:3px;">';
     if($strCond){
-	  echo "<img src=\"images/accept.png\" align=\"absmiddle\" /> <font color=\"#FFFFFF\"><b>[ผ่าน]</b></font>";
+	  echo "<img src=\"images/accept.png\" align=\"absmiddle\" /> <font color=\"#FFFFFF\"><b>[๏ฟฝ๏ฟฝาน]</b></font>";
 	  echo "<script>document.getElementById('menu_tab').innerHTML = '<img src=\"images/accept.png\" align=\"absmiddle\" />';</script>";
 	  $check_by_system = 1;
 	}else{
-	  echo "<img src=\"images/error.png\" align=\"absmiddle\" /> <font color=\"#FF9900\"><b>[ไม่ผ่าน]</b></font>";
+	  echo "<img src=\"images/error.png\" align=\"absmiddle\" /> <font color=\"#FF9900\"><b>[๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาน]</b></font>";
 	  echo "<script>document.getElementById('menu_tab').innerHTML = '<img src=\"images/error.png\" align=\"absmiddle\" />';</script>";
 	  $check_by_system = 0;
 	}
 	echo '</div>';
 	echo "<br><br>"; }
- 
- 
+
+
 }
 
 ?>
@@ -822,6 +823,6 @@ if($_GET['validate'] == ''){
 </div>
 <? //@end ?>
 <pagebreak />
-<?php 
+<?php
 //@end
 ?>
